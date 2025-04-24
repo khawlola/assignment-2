@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gagalin');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+      height: 100%;
+    }
+    
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, white, #fffae5);
+    color: #333;
+    padding: 20px;
+    height: 100%;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  
+  .icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  h1 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header-btn {
+    border: 2px solid #fcd822;
+    padding: 8px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .header-btn:hover {
+    background-color: #f7c600;
+  }
+  
+  .signup-container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .signup-title {
+    font-size: 60px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    font-family: 'Gagalin', sans-serif;
+  }
+  #signupForm{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #fcd822;
+    border-radius: 30px;
+    padding: 10px 20px;
+  }
+  
+  .input-icon {
+    width: 20px;
+    margin-right: 10px;
+  }
+  
+  input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+  }
+  
+  .signup-btn {
+    background-color: #f7c600;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .signup-btn:hover {
+    background-color: #ffd000;
+  }
+  

@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to top, white, #fffae5);
+  color: #333;
+  padding: 5px 20px;
+  height: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-btn {
+  border: 2px solid #fcd822;
+  padding: 8px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.header-btn:hover {
+  background: #fcd822;
+}
+
+header h1 {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.iicon {
+  width: 70px;
+  height: 70px;
+  margin-right: 40px;
+}
+
+.welcome-text {
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  font-family: Papyrus, fantasy;
+  text-align: center;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.robot {
+  width: 300px;
+}
+
+/* تنسيق الزر الخاص بالمسؤول */
+.admin-btn {
+  background: #ffdd32;
+  border: none;
+  border-color: #FFD400;
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-decoration: none;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: block;
+  width: fit-content;
+  margin: 10px auto 0;
+}
+
+.admin-btn:hover {
+  background: #fcd822;
+}

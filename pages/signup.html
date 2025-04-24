@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="css/sigcss.css" />
+
+</head>
+<body>
+
+  <header>
+    <h1>
+      <img src="img/hacker.png" alt="icon" class="icon" />
+      Assignment 2
+    </h1>
+    <nav>
+      <a class="header-btn" href="login.html">Login</a>
+      <a class="header-btn" href="home.html">HOME</a>
+    </nav>
+  </header>
+
+  <main class="signup-container">
+    <h2 class="signup-title">SIGN UP</h2>
+
+    <form id="signupForm" onsubmit="handleSignup(event)">
+      <div class="input-group">
+        <img src="img/user.png" alt="user" class="input-icon" />
+        <input type="text" id="username" name="username" placeholder="username" required />
+      </div>
+
+      <div class="input-group">
+        <img src="img/email.png" alt="email" class="input-icon" />
+        <input type="email" id="email" name="email" placeholder="Email" required />
+      </div>
+
+      <div class="input-group">
+        <img src="img/padlock.png" alt="lock" class="input-icon" />
+        <input type="password" id="password" name="password" placeholder="Password" required />
+      </div>
+      <button type="submit" class="signup-btn" id="submit_butt">submit</button>
+    </form>
+    <p id="error-message" style="color: #e63946;"></p>
+  </main>
+
+</body>
+</html>

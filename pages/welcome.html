@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome Page</title>
+  <link rel="stylesheet" href="css/welcomecss.css" />
+</head>
+<body>
+  <header>
+    <h1>
+      <img src="img/hacker.png" alt="icon" class="icon" />
+      Assignment 2
+    </h1>
+    <nav>
+      <a class="header-btn" href="home.html">HOME</a>
+      <a class="header-btn" href="login.html" >Log out</a>
+
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="welcome-text">Welcome <span id="username-placeholder">admin</span> <img src="img/didit.png" alt="icon" class="iicon"></h2>
+    <div class="center-container">
+      <img src="img/robot2.png" alt="Robot" class="robot" />
+    </div>
+  </main>
+
+  <script>
+    fetch('/welcome-data')
+      .then(res => res.json())
+      .then(data => {
+        const userPlaceholder = document.getElementById('username-placeholder');
+        const header = document.querySelector('.welcome-text');
+
+        if (data.role === 'admin') {
+          userPlaceholder.textContent = "Admin";
+          const adminBtn = document.createElement('a');
+          adminBtn.href = "admin_panel.html";
+          adminBtn.textContent = "Go to Admin Panel";
+          adminBtn.className = "admin-btn"; // اضافة اسم الكلاس
+          document.body.appendChild(adminBtn);
+        } else {
+          userPlaceholder.textContent = data.username;
+        }
+      })
+      .catch(() => {
+        window.location.href = "/login.html";
+      });
+  </script>
+</body>
+</html>

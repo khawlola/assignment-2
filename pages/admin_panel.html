@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>
+        <img src="img/hacker.png" alt="icon" class="icon" />
+        Assignment 2
+      </h1>
+    <div class="nav-buttons">
+      <a class="btn" href="home.html" >HOME</a>
+      <a class="btn" href="login.html" >Log out</a>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <h1 class="admin-title">ADMIN PANEL</h1>
+    <form class="admin-form" action="/admin_panel" method="POST">
+      <div class="admin-controls">
+        <img src="img/user.png" alt="user" class="input-icon" />
+        <select name="username" id="">
+            <option value="administrator">admin(Admin)</option>
+            <option value="amiwla">amiwla(Normal)</option>
+        </select>
+      </div>
+      <div class="admin-buttons">
+      <button class='admin-btn' name='action' value='upgrade' type='submit'> Upgrade </button>
+      <button class='admin-btn' name='action' value='downgrade' type='submit'> Downgrade  </button>
+    </div>
+    </form>
+  </main>
+  <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const select = document.querySelector('select[name="username"]');
+  
+      try {
+        const response = await fetch('/users-data');
+        const users = await response.json();
+  
+        select.innerHTML = ''; // امسحي الخيارات القديمة
+  
+        users.forEach(user => {
+          const option = document.createElement('option');
+          option.value = user.username;
+          option.textContent = `${user.username} (${user.role === 'admin' ? 'Admin' : 'Normal'})`;
+          select.appendChild(option);
+        });
+      } catch (err) {
+        console.error('Error fetching users:', err);
+      }
+    });
+  </script>
+  
+</body>
+</html>
