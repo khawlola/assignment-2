@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
-// إعدادات الجلسة
 app.use(session({
   secret: 'secret-key',
   resave: false,
@@ -15,21 +14,30 @@ app.use(session({
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// تقديم الملفات الثابتة من مجلد 'pages'
+
 app.use(express.static(path.join(__dirname, 'pages')));
 
-// مستخدمين وهميين
+
 const users = [
   { username: 'administrator', password: 'admin', role: 'admin' },
+  { username: 'wiener', password: 'peter', role: 'user' },
   { username: 'amiwla', password: 'ami123', role: 'user' }
 ];
 
-// عرض صفحة تسجيل الدخول
+
+app.get('/admin_panel.html', (req, res, next) => {
+  if (!req.session.user || req.session.user.role !== 'admin') {
+    return res.status(403).send('Access denied. Only admins can access this page.');
+  }
+  next(); 
+});
+
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'login.html'));
 });
 
-// التحقق من تسجيل الدخول
+
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   const user = users.find(u => u.username === username && u.password === password);
@@ -42,7 +50,7 @@ app.post('/login', (req, res) => {
   }
 });
 
-// عرض بيانات صفحة الترحيب
+
 app.get('/welcome-data', (req, res) => {
   if (!req.session.user) {
     return res.status(401).send('Unauthorized');
@@ -54,14 +62,20 @@ app.get('/welcome-data', (req, res) => {
   });
 });
 
-// معالجة الترقية أو التنزيل من صفحة الإدارة
-app.post('/admin_panel', (req, res) => {
-  const { username, action } = req.body;
 
+app.post('/admin_panel', (req, res) => {
+  const referer = req.get('Referer');
+
+  if (!referer || !referer.includes('/admin_panel.html')) {
+    return res.status(403).send('Access denied: invalid referer');
+  }
+
+  const { username, action } = req.body;
   const user = users.find(u => u.username === username);
+
   if (user) {
     if (action === 'upgrade') {
-      user.role = 'admin';
+      user.role = 'admin'; 
     } else if (action === 'downgrade') {
       user.role = 'user';
     }
@@ -69,17 +83,13 @@ app.post('/admin_panel', (req, res) => {
 
   res.redirect('/admin_panel.html');
 });
-// إرجاع جميع المستخدمين مع أدوارهم لعرضهم في admin panel
-app.get('/users-data', (req, res) => {
-  if (!req.session.user || req.session.user.role !== 'admin') {
-    return res.status(403).send('Forbidden');
-  }
 
+
+app.get('/users-data', (req, res) => {
   res.json(users);
 });
 
-// بدء الخادم
-app.listen(3000, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
 
+app.listen(PORT, () => {
+  console.log( 'Server running on http://localhost:${PORT}');
+});

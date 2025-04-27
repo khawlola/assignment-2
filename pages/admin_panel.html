@@ -43,8 +43,7 @@
         const response = await fetch('/users-data');
         const users = await response.json();
   
-        select.innerHTML = ''; // امسحي الخيارات القديمة
-  
+        select.innerHTML = ''; 
         users.forEach(user => {
           const option = document.createElement('option');
           option.value = user.username;
